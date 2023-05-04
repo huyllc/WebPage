@@ -25,26 +25,35 @@ function register() {
     var email_tel = document.getElementById('user_infor');
     var pass = document.getElementById('user_password');
     var passconfirm = document.getElementById('user_passwordconfirm');
-
-    if (name.value.length == 0) {
-        alert('Vui lòng nhập họ và tên');
-    } else if (email_tel.value.length == 0) {
-        alert('Vui lòng nhập email hoặc số điện thoại');
-    } else if (pass.value.length == 0) {
-        alert('Vui lòng nhập mật khẩu');
-    } else if (passconfirm.value.length == 0){
-        alert('Vui lòng xác nhận lại mật khẩu');
-    } else if (pass.value.length != passconfirm.value.length){
-        alert('Hai mật khẩu không giống nhau!');
-    } else if (name.value.length == 0 && email_tel.value.length == 0 && pass.value.length == 0 && passconfirm.value.length == 0) {
-        alert('Vui lòng nhập đầy đủ thông tin');
-    } else {
-        localStorage.setItem('username', name.value);
-        localStorage.setItem('email_phonenumber', email_tel.value);
-        localStorage.setItem('password', pass.value);
-        alert('Tài khoản của bạn đã được tạo thành công!');
-        window.location.href = "../Login.html";
-    }
+    
+    switch (true) {
+        case (name.value.length == 0):
+          alert('Vui lòng nhập họ và tên');
+          break;
+        case (email_tel.value.length == 0):
+          alert('Vui lòng nhập email hoặc số điện thoại');
+          break;
+        case (pass.value.length == 0):
+          alert('Vui lòng nhập mật khẩu');
+          break;
+        case (passconfirm.value.length == 0):
+          alert('Vui lòng xác nhận lại mật khẩu');
+          break;
+        case (pass.value.length != passconfirm.value.length):
+          alert('Hai mật khẩu không giống nhau!');
+          break;
+        case (name.value.length == 0 && email_tel.value.length == 0 && pass.value.length == 0 && passconfirm.value.length == 0):
+          alert('Vui lòng nhập đầy đủ thông tin');
+          break;
+        default:
+          localStorage.setItem('username', name.value);
+          localStorage.setItem('email_phonenumber', email_tel.value);
+          localStorage.setItem('password', pass.value);
+          alert('Tài khoản của bạn đã được tạo thành công!');
+          window.location.href = "../Login.html";
+          break;
+      }
+      
 }
 
 function check() {
@@ -53,15 +62,21 @@ function check() {
     var loginid = document.getElementById('login_id');
     var password = document.getElementById('user_password');
 
-    if (loginid.value == storedEmail_Tel  && password.value == storedPassword) {
+    switch (true) {
+    case (loginid.value == storedEmail_Tel && password.value == storedPassword):
         alert('Đăng nhập thành công');
-    } else if (loginid.value.length == 0 && password.value.length == 0) {
+        break;
+    case (loginid.value.length == 0 && password.value.length == 0):
         alert('Vui lòng nhập đầy đủ thông tin');
-    } else if (loginid.value.length == 0) {
+        break;
+    case (loginid.value.length == 0):
         alert('Vui lòng nhập tài khoản');
-    } else if (password.value.length == 0) {
+        break;
+    case (password.value.length == 0):
         alert('Vui lòng nhập mật khẩu');
-    } else if (loginid.value != storedEmail_Tel || password.value != storedPassword) {
+        break;
+    default:
         alert('Đăng nhập thất bại');
+        break;
     }
 }
